@@ -34,14 +34,14 @@ class ModuleManager(cli.Base):
             installer = ModuleInstaller(repository)
             modules = installer.install(arguments.options, arguments.force)
                         
-            print
-            print "Successfully installed %d modules, %d already installed." % (len(modules['success']), len(modules['existing']))
+            print()
+            print("Successfully installed {} modules, {} already installed.".format(len(modules['success']), len(modules['existing'])))
             if len(modules['fail']) > 0:
-                print "Failed to install %d modules:" % len(modules['fail'])
+                print("Failed to install %d modules:".format(len(modules['fail'])))
                 for module in modules['fail']:
-                    print "  %s" % module
-                    print "    %s" % modules['fail'][module]
-            print
+                    print("  {}".format(module))
+                    print("    {}".format())modules['fail'][module]
+            print()
         
     def do_remote(self, arguments):
         """manage the source repositories, from which you install modules"""
@@ -92,7 +92,7 @@ class ModuleManager(cli.Base):
         if len(repositories) == 1:
             return repositories[0]
         elif len(repositories) == 0:
-            print "You do not have a drozer Module Repository."
+            print("You do not have a drozer Module Repository.")
             if self.confirm("Would you like to create one?") == "y":
                 while True:
                     path = self.ask("Path to new repository: ")
@@ -100,34 +100,34 @@ class ModuleManager(cli.Base):
                     try:
                         Repository.create(path)
                         
-                        print "Initialised repository at %s.\n" % path
+                        print("Initialised repository at {}.\n".format(path))
                         
                         return Repository.all()[0]
                     except NotEmptyException:
-                        print "The target (%s) already exists.\n" % path
+                        print("The target ({}) already exists.\n".format(path))
                 
                 return None
             else:
                 return None
         else:
-            print "You have %d drozer Module Repositories. Which would you like to install into?\n" % len(repositories)
+            print("You have {} drozer Module Repositories. Which would you like to install into?\n".format(len(repositories)))
             for i in xrange(len(repositories)):
-                print "  %5d  %s" % (i+1, repositories[i])
-            print
+                print("  %5d  %s".format(i+1, repositories[i]))
+            print()
             
             while(True):
-                print "repo>",
+                print("repo>")
                 try:
                     idx = int(raw_input().strip())
                 
                     if idx >= 1 and idx <= len(repositories):
-                        print
+                        print()
                         
                         return repositories[idx-1]
                     else:
                         raise ValueError(idx)
                 except ValueError:
-                    print "Not a valid selection. Please enter a number between 1 and %d." % len(repositories)
+                    print("Not a valid selection. Please enter a number between 1 and {}.".format(len(repositories)))
     
     def __parse_error(self, message):
         """
@@ -148,18 +148,18 @@ class ModuleManager(cli.Base):
             
             if len(modules) > 0:
                 for module in modules:
-                    print module
+                    print(module)
                     
                     if include_descriptions:
                         if module.description != None:
-                            print "%s\n" % text.indent(text.wrap(module.description, console.get_size()[0] - 4), "    ")
+                            print("{}\n".format(text.indent(text.wrap(module.description, console.get_size()[0] - 4), "    ")))
                         else:
-                            print text.indent("No description given.\n", "    ")
-                print
+                            print(text.indent("No description given.\n", "    "))
+                print()
             else:
-                print "No modules found.\n"
+                print("No modules found.\n")
         except NetworkException:
-            print "There was a problem accessing one-or-more of the remote repositories.\n\nMake sure that you have a working network connection.\n"
+            print("There was a problem accessing one-or-more of the remote repositories.\n\nMake sure that you have a working network connection.\n")
 
 
 class RemoteManager(cli.Base):
@@ -187,10 +187,10 @@ class RemoteManager(cli.Base):
 
             Remote.create(url)
             
-            print "Added remote: %s.\n" % url
+            print("Added remote: {}.\n".format(url))
         else:
-            print "usage: drozer module remote create http://path.to.repository/\n"
-    
+            print("usage: drozer module remote create http://path.to.repository/\n")
+
     def do_remove(self, arguments):
         """remove a remote module repository"""
         
@@ -200,24 +200,24 @@ class RemoteManager(cli.Base):
             try:
                 Remote.delete(url)
                 
-                print "Removed remove %s.\n" % url
+                print("Removed remove {}.\n".format(url))
             except UnknownRemote:
-                print "The target (%s) is not a remote module repository.\n" % url
+                print("The target ({}) is not a remote module repository.\n".format(url))
         else:
-            print "usage: drozer module remote delete http://path.to.repository/\n"
-        
+            print("usage: drozer module remote delete http://path.to.repository/\n")
+
     def do_list(self, arguments):
         """shows a list of all remotes"""
         
-        print "Remote repositories:"
+        print("Remote repositories:")
         for url in Remote.all():
-            print "  %s" % url
+            print("  {}".format(url))
 
             try:
                 Remote(url).download("INDEX.xml")
             except NetworkException:
-                print "    INACCESSIBLE"
-        print
+                print("    INACCESSIBLE")
+        print()
 
     def run(self, argv=None):
         """
@@ -274,12 +274,12 @@ class RepositoryManager(cli.Base):
             try:
                 Repository.create(path)
                 
-                print "Initialised repository at %s.\n" % path
+                print("Initialised repository at {}.\n".format(path))
             except NotEmptyException:
-                print "The target (%s) already exists.\n" % path
+                print("The target ({}) already exists.\n".format(path))
         else:
-            print "usage: drozer module repository create /path/to/repository\n"
-    
+            print("usage: drozer module repository create /path/to/repository\n")
+
     def do_delete(self, arguments):
         """remove a drozer module repository"""
         
@@ -289,12 +289,12 @@ class RepositoryManager(cli.Base):
             try:
                 Repository.delete(path)
                 
-                print "Removed repository at %s.\n" % path
+                print("Removed repository at {}.\n".format(path))
             except UnknownRepository:
-                print "The target (%s) is not a drozer module repository.\n" % path
+                print("The target ({}) is not a drozer module repository.\n".format(path))
         else:
-            print "usage: drozer module repository delete /path/to/repository\n"
-                
+            print("usage: drozer module repository delete /path/to/repository\n")
+
     def do_disable(self, arguments):
         """hide a Module repository, without deleting its contents"""
         
@@ -304,12 +304,12 @@ class RepositoryManager(cli.Base):
             try:
                 Repository.disable(path)
                 
-                print "Hidden repository at %s.\n" % path
+                print("Hidden repository at {}.\n".format(path))
             except UnknownRepository:
-                print "The target (%s) is not a drozer module repository.\n" % path
+                print("The target ({}) is not a drozer module repository.\n".format(path))
         else:
-            print "usage: drozer module repository disable /path/to/repository\n"
-    
+            print("usage: drozer module repository disable /path/to/repository\n")
+
     def do_enable(self, arguments):
         """enable a previously disabled Module repository"""
         
@@ -319,12 +319,12 @@ class RepositoryManager(cli.Base):
             try:
                 Repository.enable(path)
                 
-                print "Enabled repository at %s.\n" % path
+                print("Enabled repository at {}.\n".format(path))
             except UnknownRepository:
-                print "The target (%s) is not a drozer module repository.\n" % path
+                print("The target ({}) is not a drozer module repository.\n".format(path))
         else:
-            print "usage: drozer module repository enable /path/to/repository\n"
-        
+            print("usage: drozer module repository enable /path/to/repository\n")
+
     def do_list(self, arguments):
         """list all repositories, both local and remote"""
         
@@ -355,10 +355,10 @@ class RepositoryManager(cli.Base):
         (b) registered as remotes.
         """
         
-        print "Local repositories:"
+        print("Local repositories:")
         for repo in Repository.all():
-            print "  %s" % repo
-        print
+            print("  {}".format(repo))
+        print()
     
     def __parse_error(self, message):
         """

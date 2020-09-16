@@ -29,12 +29,12 @@ class WebContentResolver(Module, common.PackageManager, common.Provider):
         try:
             server = HTTPServer(('', int(arguments.port)), functools.partial(Handler, self))
 
-            print "WebContentResolver started on port " + str(arguments.port) + "."
-            print "Ctrl+C to Stop"
+            print("WebContentResolver started on port " + str(arguments.port) + ".")
+            print("Ctrl+C to Stop")
 
             server.serve_forever()
         except KeyboardInterrupt:
-            print "Stopping...\n"
+            print("Stopping...\n")
 
             server.socket.close()
 

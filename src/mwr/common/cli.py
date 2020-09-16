@@ -93,10 +93,10 @@ class Base(object):
     def do_commands(self, arguments):
         """shows a list of all console commands"""
 
-        print "usage:", self.__doc__.strip()
-        print
-        print "available commands:"
-        print self.__get_commands_help()
+        print("usage:", self.__doc__.strip())
+        print()
+        print("available commands:")
+        print(self.__get_commands_help())
         
     def handle_error(self, throwable):
         """default error handler: shows an exception message, before terminating"""
@@ -153,8 +153,8 @@ class Base(object):
         """
 
         if message != None:
-            print "error:", message
-        print self._parser.format_help()
+            print("error:", message)
+        print(self._parser.format_help())
         
         
 class UsageError(Exception):

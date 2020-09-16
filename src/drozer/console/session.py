@@ -557,9 +557,9 @@ class Session(cmd.Cmd):
             latest = meta.latest_version()
             if latest != None:
                 if meta.version > latest:
-                    print "It seems that you are running a drozer pre-release. Brilliant!\n\nPlease send any bugs, feature requests or other feedback to our Github project:\nhttp://github.com/mwrlabs/drozer.\n\nYour contributions help us to make drozer awesome.\n"
+                    print("It seems that you are running a drozer pre-release. Brilliant!\n\nPlease send any bugs, feature requests or other feedback to our Github project:\nhttp://github.com/mwrlabs/drozer.\n\nYour contributions help us to make drozer awesome.\n")
                 elif meta.version < latest:
-                    print "It seems that you are running an old version of drozer. drozer v%s was\nreleased on %s. We suggest that you update your copy to make sure that\nyou have the latest features and fixes.\n\nTo download the latest drozer visit: http://mwr.to/drozer/\n" % (latest, latest.date)
+                    print("It seems that you are running an old version of drozer. drozer v{} was\nreleased on {}. We suggest that you update your copy to make sure that\nyou have the latest features and fixes.\n\nTo download the latest drozer visit: http://mwr.to/drozer/\n".format(latest, latest.date))
         except Exception, e:
             pass #TODO figure out what this exception is and handle appropriately (exp. IOError)
 
@@ -669,21 +669,21 @@ class Session(cmd.Cmd):
         self.pop_completer()
     
     def __print_banner(self):
-        print "            ..                    ..:."
-        print "           ..o..                  .r.."
-        print "            ..a..  . ....... .  ..nd"
-        print "              ro..idsnemesisand..pr"
-        print "              .otectorandroidsneme."
-        print "           .,sisandprotectorandroids+."
-        print "         ..nemesisandprotectorandroidsn:."
-        print "        .emesisandprotectorandroidsnemes.."
-        print "      ..isandp,..,rotectorandro,..,idsnem."
-        print "      .isisandp..rotectorandroid..snemisis."
-        print "      ,andprotectorandroidsnemisisandprotec."
-        print "     .torandroidsnemesisandprotectorandroid."
-        print "     .snemisisandprotectorandroidsnemesisan:"
-        print "     .dprotectorandroidsnemesisandprotector."
-        print
+        print("            ..                    ..:.")
+        print("           ..o..                  .r..")
+        print("            ..a..  . ....... .  ..nd")
+        print("              ro..idsnemesisand..pr")
+        print("              .otectorandroidsneme.")
+        print("           .,sisandprotectorandroids+.")
+        print("         ..nemesisandprotectorandroidsn:.")
+        print("        .emesisandprotectorandroidsnemes..")
+        print("      ..isandp,..,rotectorandro,..,idsnem.")
+        print("      .isisandp..rotectorandroid..snemisis.")
+        print("      ,andprotectorandroidsnemisisandprotec.")
+        print("     .torandroidsnemesisandprotectorandroid.")
+        print("     .snemisisandprotectorandroidsnemesisan:")
+        print("     .dprotectorandroidsnemesisandprotector.")
+        print()
 
 
     def __setBase(self, base):

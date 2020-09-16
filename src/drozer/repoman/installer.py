@@ -56,8 +56,8 @@ class ModuleInstaller(object):
         """
 
         if force:
-            print "Forcing installation of modules from repositories"
-        
+            print("Forcing installation of modules from repositories")
+
         status = { 'success': [], 'existing': [], 'fail': {} }
 
         for pattern in modules:
@@ -73,21 +73,21 @@ class ModuleInstaller(object):
                     _modules = []
             
             for module in _modules:
-                print "Processing %s..." % module,
+                print("Processing {}...".format(module))
                 
                 try:
                     self.__install_module(fetch, module, force)
-                    print "Done."
-                    
+                    print("Done.")
+
                     status['success'].append(module)
                 except AlreadyInstalledError as e:
-                    print "Already Installed."
+                    print("Already Installed.")
 
                     status['existing'].append(module)
                 except InstallError as e:
-                    print "Failed."
-                    
-                    status['fail'][module] = str(e) 
+                    print("Failed.")
+
+                    status['fail'][module] = str(e)
         
         return status
     
