@@ -125,7 +125,7 @@ def get_version():
 	elif platform != "win32":
 		return
 	
-	return subprocess.check_output(version_cmd).split('-', 1)[0]
+	return subprocess.check_output(version_cmd, shell=True).split(b'-', 1)[0]
 
 setuptools.setup(
   name = meta.name,
