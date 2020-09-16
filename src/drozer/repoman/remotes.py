@@ -1,6 +1,7 @@
-import httplib
-import StringIO
-import urllib2
+from http.client import HTTPResponse
+from io import StringIO
+from urllib.error import HTTPError, URLError
+from urllib.request import urlopen
 
 from drozer.configuration import Configuration
 
@@ -85,10 +86,10 @@ class Remote(object):
         
         try:
             return self.getPath(module)
-        except urllib2.HTTPError:
+        except HTTPError:
             # such as not found: there is no module to download
             raise NetworkException()
-        except urllib2.URLError as e:
+        except URLError as e:
             # such as connection refused: the server simply isn't there
             raise NetworkException()
     
@@ -97,11 +98,11 @@ class Remote(object):
         Fetch a file from the remote.
         """
         
-        r = urllib2.urlopen(self.buildPath(path))
+        r = urlopen(self.buildPath(path))
         socket = FakeSocket(r.read())
         r.close()
         
-        response = httplib.HTTPResponse(socket)
+        response = HTTPResponse(socket)
         response.begin()
         data = response.read()
         response.close()
@@ -109,9 +110,9 @@ class Remote(object):
         return data
             
         
-class FakeSocket(StringIO.StringIO):
+class FakeSocket(StringIO):
     """
-    FakeSocket is used to interface between urllib2 and httplib, which aren't
+    FakeSocket is used to interface between urllib and http.client, which aren't
     totally compatible.
     """
     

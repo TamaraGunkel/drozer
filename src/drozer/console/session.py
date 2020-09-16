@@ -560,7 +560,7 @@ class Session(cmd.Cmd):
                     print("It seems that you are running a drozer pre-release. Brilliant!\n\nPlease send any bugs, feature requests or other feedback to our Github project:\nhttp://github.com/mwrlabs/drozer.\n\nYour contributions help us to make drozer awesome.\n")
                 elif meta.version < latest:
                     print("It seems that you are running an old version of drozer. drozer v{} was\nreleased on {}. We suggest that you update your copy to make sure that\nyou have the latest features and fixes.\n\nTo download the latest drozer visit: http://mwr.to/drozer/\n".format(latest, latest.date))
-        except Exception, e:
+        except Exception:
             pass #TODO figure out what this exception is and handle appropriately (exp. IOError)
 
     def sendAndReceive(self, message):

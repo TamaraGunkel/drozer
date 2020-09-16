@@ -40,7 +40,7 @@ class ModuleManager(cli.Base):
                 print("Failed to install %d modules:".format(len(modules['fail'])))
                 for module in modules['fail']:
                     print("  {}".format(module))
-                    print("    {}".format())modules['fail'][module]
+                    print("    {}".format(modules['fail'][module]))
             print()
         
     def do_remote(self, arguments):
@@ -111,14 +111,14 @@ class ModuleManager(cli.Base):
                 return None
         else:
             print("You have {} drozer Module Repositories. Which would you like to install into?\n".format(len(repositories)))
-            for i in xrange(len(repositories)):
+            for i in range(len(repositories)):
                 print("  %5d  %s".format(i+1, repositories[i]))
             print()
             
             while(True):
                 print("repo>")
                 try:
-                    idx = int(raw_input().strip())
+                    idx = int(input().strip())
                 
                     if idx >= 1 and idx <= len(repositories):
                         print()

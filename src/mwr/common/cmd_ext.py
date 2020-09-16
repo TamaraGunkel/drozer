@@ -59,7 +59,7 @@ class Cmd(cmd.Cmd):
                 else:
                     if self.use_rawinput:
                         try:
-                            line = raw_input(self.prompt)
+                            line = input(self.prompt)
                         except EOFError:
                             line = 'EOF'
                     else:
@@ -82,7 +82,7 @@ class Cmd(cmd.Cmd):
                     else:
                         raise
             self.postloop()
-        except Exception, e:
+        except Exception:
             pass
             
         finally:

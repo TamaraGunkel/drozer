@@ -1,4 +1,5 @@
-from urllib2 import HTTPError, URLError, urlopen, Request
+from urllib.error import HTTPError, URLError
+from urllib.request import urlopen, Request
 from xml.etree import ElementTree
 
 class Version:
