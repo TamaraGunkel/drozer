@@ -27,7 +27,7 @@ drozer is open source software, maintained by MWR InfoSecurity, and can be downl
 
 ## Prerequisites
 
-1. [Python2.7](https://www.python.org/downloads/)
+1. [Python3](https://www.python.org/downloads/)
 
 **Note: On Windows please ensure that the path to the Python installation and the Scripts folder under the Python installation are added to the PATH environment variable.**
 
@@ -38,6 +38,7 @@ drozer is open source software, maintained by MWR InfoSecurity, and can be downl
 4. [Twisted](https://pypi.python.org/pypi/Twisted) 10.2 or greater
 
 5. [Java Development Kit 1.7](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) 
+A symlink to the `javac` script named `javac7` must exist in `/bin` to make the installation work. The symlink is used because the `javac` command refers to newer Java versions in newer Ubuntu systems.
 
 **Note: On Windows please ensure that the path to javac.exe is added to the PATH environment variable.**
 

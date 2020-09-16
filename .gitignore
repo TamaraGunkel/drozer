@@ -19,3 +19,5 @@ src/drozer.egg-info
 mercury.log
 deb_dist/*
 *.tar.gz
+
+.idea

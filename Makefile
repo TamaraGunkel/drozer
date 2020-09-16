@@ -3,9 +3,9 @@ NATIVES = $(shell find src/drozer/modules -name Android.mk)
 SOURCES = $(shell find src/drozer/modules -name *.java)
 
 DX = $(CURDIR)/src/drozer/lib/dx
-JAVAC = javac
+JAVAC = javac7
 NDKBUILD = ndk-build
-PYTHON = python
+PYTHON = python3
 CP=cp
 SED=sed
 CD=cd
@@ -72,9 +72,9 @@ drozer-deb-structure: drozer-prepared
 	$(CP) bin/* debian/usr/bin/
 	$(CP) LICENSE debian/usr/share/doc/drozer/LICENSE
 	$(CP) README.md debian/usr/share/doc/drozer/README.md
-	$(CP) -r src/drozer debian/usr/lib/python2.7/dist-packages/drozer
-	$(CP) -r src/mwr debian/usr/lib/python2.7/dist-packages/mwr
-	$(CP) -r src/pydiesel debian/usr/lib/python2.7/dist-packages/pydiesel
+	$(CP) -r src/drozer debian/usr/lib/python3/dist-packages/drozer
+	$(CP) -r src/mwr debian/usr/lib/python3/dist-packages/mwr
+	$(CP) -r src/pydiesel debian/usr/lib/python3/dist-packages/pydiesel
 
 debian/DEBIAN/control: 
 	$(CP) scripts/deb/control.template debian/DEBIAN/control
