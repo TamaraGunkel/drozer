@@ -60,4 +60,4 @@ def latest_version():
         return None
 
 def print_version():
-    print "%s %s\n" % (name, version)
+    print("{} {}\n".format(name, version))

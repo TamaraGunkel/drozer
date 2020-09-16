@@ -199,11 +199,11 @@ class Console(cli.Base):
             
             print("drozer has established an SSL Connection to {}:{}.".format(peer))
             print("The server has provided an SSL Certificate with the SHA-1 Fingerprint:")
-            print("{}\n".format())provider.digest(certificate)
+            print("{}\n".format(provider.digest(certificate)))
             
             if trust_status == -2:
                 print("WARNING: this host has previously used a certificate with the fingerprint:")
-                print("{}\n".format(provider.trusted_certificate_for(peer))
+                print("{}\n".format(provider.trusted_certificate_for(peer)))
             
             while(True):
                 print("Do you want to accept this certificate? [yna] ")

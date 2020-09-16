@@ -168,7 +168,7 @@ class Cmd(cmd.Cmd):
             run app.package.info com.example.app
         """
         
-        print self.__do_substitutions(arguments)
+        print(self.__do_substitutions(arguments))
 
     def do_env(self, arguments):
         """
@@ -178,8 +178,8 @@ class Cmd(cmd.Cmd):
         """
 
         for key in self.variables:
-            print "%s=%s" % (key, self.variables[key])
-        print
+            print("{}={}".format(key, self.variables[key]))
+        print()
     
     def do_set(self, arguments):
         """
