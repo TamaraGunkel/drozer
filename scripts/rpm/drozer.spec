@@ -21,10 +21,7 @@ License:	BSD and GPL2+ and Apache2 and MITx11
 Group:		MWR InfoSecurity
 URL:		https://labs.mwrinfosecurity.com
 Source:		%{name}-%{version}.tar.gz
-Requires:	python >= 2.7
-Requires:	protobuf-python >= 2.4.1
-Requires:	pyOpenSSL >= 0.12-1
-Requires:	python-twisted-web >= 10.0.2
+Requires:	python >= 3.0
 
 Requires: glibc(%{__isa_name}-32)
 Requires: zlib(%{__isa_name}-32)

@@ -8,13 +8,8 @@ jdk:
 addons:
   apt:
     packages:
-    - python-setuptools
-    - python-all
     - dh-make
-    - protobuf-compiler
     - libprotobuf-java
-    - python-protobuf
-    - python-twisted
     - rpm
     
 matrix:
