@@ -2,8 +2,8 @@
 set -e
 
 # Automatically added by dhpython:
-if which pyclean >/dev/null 2>&1; then
-	pyclean -p drozer 
+if which py3clean >/dev/null 2>&1; then
+	py3clean -p drozer
 else
 	dpkg -L drozer | grep \.py$ | while read file
 	do
