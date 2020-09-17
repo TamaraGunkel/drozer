@@ -52,13 +52,13 @@ A symlink to the `javac` script named `javac7` must exist in `/bin` to make the 
 ```
 git clone https://github.com/mwrlabs/drozer/
 cd drozer
-python setup.py bdist_wheel
+python3 setup.py bdist_wheel
 
 ```
 ### Installing Python wheel
 
 ```
-sudo pip install dist/drozer-2.x.x-py2-none-any.whl
+sudo pip3 install dist/drozer-2.x.x-py2-none-any.whl
 
 ```
 
